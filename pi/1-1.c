@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define INTERVAL 10000
+#define INTERVAL 100
 
 int main(int argc, char** argv) {
   // Initialize the MPI environment
@@ -55,8 +55,8 @@ int main(int argc, char** argv) {
       /* tag          = */ 0, 
       /* communicator = */ MPI_COMM_WORLD, 
       /* status       = */ MPI_STATUS_IGNORE);
-      printf("[R] PI recibido en Proceso %d \n", world_rank);
-      printf("[R] Estimación Final de PI = %0.15f \n",pi);
+      printf("PI recibido en Proceso: %d \n", world_rank);
+      printf("Estimación Final de PI = %0.15f \n",pi);
   
   } else if (world_rank == 1) {
     MPI_Recv(
@@ -67,8 +67,8 @@ int main(int argc, char** argv) {
       /* tag          = */ 0, 
       /* communicator = */ MPI_COMM_WORLD, 
       /* status       = */ MPI_STATUS_IGNORE);
-    printf("[R] Datos recibidos en Proceso %d \n", world_rank);
-    printf("[R] Calculando desde Proceso %d \n", world_rank);
+    printf("Datos recibidos en Proceso: %d \n", world_rank);
+    printf("Calculando desde Proceso: %d \n", world_rank);
     for (i = (INTERVAL * INTERVAL)/2; i < (INTERVAL * INTERVAL); i++) { 
       // Randomly generated x and y values 
       rand_x = (double)(rand() % (INTERVAL + 1)) / INTERVAL; 
@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
       // Checking if (x, y) lies inside the define 
       // circle with R=1 
       if (origin_dist <= 1) 
-          circle_points = (circle_points+1); 
+          circle_points++; 
   
       // estimated pi after this iteration 
       pi = (double)(4 * circle_points) / (i+1);   

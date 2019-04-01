@@ -26,4 +26,6 @@ int main(int argc, char** argv) {
         pi = (double)(4 * circle_points) / square_points;
         printf("%0.15f %0.15f %d %d - %0.15f \n\n", rand_x, rand_y, circle_points, square_points, pi);
     }
+
+    printf("Estimacion final de Pi = %0.15f \n",pi); 
 }
